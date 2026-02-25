@@ -1,0 +1,70 @@
+[
+  {
+    "title": "Cyberpunk City VFX",
+    "description": "A cinematic visual effects breakdown of a futuristic cyberpunk city with neon lighting and rainy atmosphere.",
+    "hashtags": [
+      "vfx",
+      "cyberpunk",
+      "cinema4d",
+      "octane",
+      "compositing"
+    ],
+    "date": "2025-11-15",
+    "id": "cyberpunk-city",
+    "thumb": "/projects/cyberpunk-city/thumb.jpg"
+  },
+  {
+    "title": "Minimal UI Kit",
+    "description": "A premium, minimalist web application interface designed with dark mode and high contrast typography.",
+    "hashtags": [
+      "webdev",
+      "ui",
+      "ux",
+      "minimalist",
+      "frontend"
+    ],
+    "date": "2026-02-10",
+    "id": "minimal-ui",
+    "thumb": "/projects/minimal-ui/thumb.jpg"
+  },
+  {
+    "title": "Neon Dreams Abstract",
+    "description": "An exploration of abstract 3D forms driven by parametric noise and glowing neon emissive materials.",
+    "hashtags": [
+      "3d",
+      "abstract",
+      "houdini",
+      "redshift"
+    ],
+    "date": "2026-01-22",
+    "id": "neon-dreams",
+    "thumb": "/projects/neon-dreams/thumb.jpg"
+  },
+  {
+    "title": "Vincestrument Hub",
+    "description": "A premium, minimalist web application interface designed with dark mode and high contrast typography.",
+    "hashtags": [
+      "webdev",
+      "ui",
+      "ux",
+      "minimalist",
+      "frontend"
+    ],
+    "date": "2026-02-10",
+    "id": "vincetrument",
+    "thumb": "/projects/vincetrument/thumb.jpg"
+  },
+  {
+    "title": "Virtual Reality Soundscape",
+    "description": "An immersive digital landscape where geometric shapes react to real-time audio analysis in VR.",
+    "hashtags": [
+      "vr",
+      "creativecoding",
+      "threejs",
+      "audio-reactive"
+    ],
+    "date": "2026-02-20",
+    "id": "vr-landscape",
+    "thumb": "/projects/vr-landscape/thumb.jpg"
+  }
+]

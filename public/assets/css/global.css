@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Crimson Text';
+    src: url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --views-width: 744px;
+    --proj-box-size: 242px;
+    --font-color: black;
+    --bg-color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Crimson Text', serif;
+    margin: 0;
+    padding: 20px;
+    max-width: var(--views-width);
+    margin: 0 auto;
+    font-size: 20px;
+    color: var(--font-color);
+    background-color: var(--bg-color);
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin: 20px 0 20px 0;
+}
+
+h1 i {
+    font-size: 0.62em;
+    text-transform: lowercase;
+    opacity: 0.85;
+    margin-left: 0px;
+    font-weight: lighter;
+    letter-spacing: .05em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+p {
+    margin: 20px 0 20px 0;
+    line-height: 1.3em;
+}
+
+a {
+    color: var(--font-color);
+}
+
+nav a {
+    text-decoration: none;
+}
+
+li {
+    text-decoration: none;
+    line-height: 1.5em;
+    margin: .8em 0 .8em 0;
+}
+
+video,
+img {
+    width: 100%;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* Light and dark theme settings */
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --font-color: black;
+        --bg-color: white;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --font-color: rgba(255, 255, 255, 0.8);
+        --bg-color: rgb(15, 15, 15);
+    }
+
+    img {
+        opacity: 0.9;
+    }
+}
