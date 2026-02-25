@@ -172,12 +172,17 @@ class PortfolioApp {
         .map(tag => `<span class="hashtag" data-tag="${tag}">#${tag}</span>`)
         .join('');
 
+      const authorHtml = project.author ? `<span class="project-author">by ${project.author}</span>` : '';
+      const dateHtml = project.date ? `<span class="project-date">${project.date}</span>` : '';
+      const metaRow = (authorHtml || dateHtml) ? `<div class="project-meta">${authorHtml} ${dateHtml}</div>` : '';
+
       card.innerHTML = `
         <img class="project-thumb" src="${project.thumb}" alt="${project.title}" loading="lazy" />
         <div class="project-info">
-          <div>
+          <div class="project-info-content">
             <h2 class="project-title">${project.title}</h2>
-            ${this.viewMode === 'list' ? `<p class="project-desc">${project.description}</p>` : ''}
+            ${metaRow}
+            <p class="project-desc">${project.description}</p>
           </div>
           <div class="project-hashtags">
             ${tagsHtml}
