@@ -14,6 +14,16 @@
     "thumb": "/projects/cyberpunk-city/thumb.jpg"
   },
   {
+    "id": "midterms-algorave",
+    "title": "Midterms Algorave",
+    "description": "Mars 2026",
+    "date": "2026-02-27",
+    "thumb": "/projects/midterms-algorave/assets/poster/test-pattern.png",
+    "hashtags": [
+      "mars 2026"
+    ]
+  },
+  {
     "title": "Minimal UI Kit",
     "description": "A premium, minimalist web application interface designed with dark mode and high contrast typography.",
     "hashtags": [

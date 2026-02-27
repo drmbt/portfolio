@@ -1,0 +1,389 @@
+:root {
+    --bg-color: #000;
+    --text-color: #fff;
+    --accent-color: #0ff;
+    /* Subtle cyan for hover states based on American Haiku */
+    --font-mono: 'Courier New', Courier, monospace;
+    /* Can be updated to a specific web font */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* SECTION LABELS */
+.section-label {
+    display: inline-block;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+section {
+    padding: 4rem 2rem;
+    position: relative;
+    z-index: 10;
+    background-color: transparent;
+}
+
+.hero-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    pointer-events: auto;
+    /* Re-enable clicks for the return button */
+}
+
+.hero-return-btn {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    border: 1px solid var(--text-color);
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.hero-return-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* HERO SECTION */
+.hero-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    /* Sits behind other content */
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5vh;
+    /* Tiny gradient */
+    background: linear-gradient(to top, var(--bg-color) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Pillarbox to preserve aspect ratio */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through to video */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    transition: opacity 0.5s ease;
+}
+
+.hero-overlay.idle {
+    opacity: 0;
+}
+
+.hero-controls {
+    pointer-events: auto;
+    /* Re-enable for controls */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.scrub-bar {
+    flex-grow: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 2rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.scrub-progress {
+    height: 100%;
+    background: var(--text-color);
+    width: 0%;
+}
+
+/* RAMP */
+.ramp-section {
+    margin-top: 100vh;
+    /* Push content down past fixed hero */
+    height: 0;
+    position: relative;
+    z-index: 5;
+}
+
+/* OVERVIEW */
+.overview-section {
+    max-width: 800px;
+}
+
+.overview-content {
+    font-size: 1.2rem;
+}
+
+/* CAROUSEL */
+.carousel-section {
+    overflow: hidden;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    padding: 0 2rem;
+    width: max-content;
+    cursor: grab;
+}
+
+.carousel-track:active {
+    cursor: grabbing;
+}
+
+.carousel-img {
+    height: 40vh;
+    /* Reduced height to fit ~4 items on screen */
+    width: auto;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+}
+
+.carousel-img:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+/* POSTER */
+.poster-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+}
+
+.poster-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.poster-img {
+    max-height: 80vh;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    flex: 0 1 auto;
+    min-width: 0;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.poster-img:hover {
+    border-color: var(--accent-color);
+}
+
+/* CREDITS */
+.credits-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.credits-section .section-label {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.credit-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+}
+
+.credit-role {
+    color: #aaa;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+}
+
+.lightbox-nav {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.lightbox-nav button {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-mono);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* OTHER VIDEOS */
+.other-videos-section {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it spans full width */
+}
+
+.other-videos-grid {
+    display: grid;
+    /* Limit to a maximum of 4 columns, auto fitting */
+    grid-template-columns: repeat(auto-fit, minmax(calc(25% - 2rem), 1fr));
+    gap: 2rem;
+}
+
+.video-thumb {
+    position: relative;
+    cursor: pointer;
+}
+
+.video-thumb img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.3s;
+}
+
+.video-thumb:hover img {
+    border-color: var(--accent-color);
+}
+
+.video-thumb-title {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* RELATED PROJECTS */
+.related-projects-section {
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-color) 20vh);
+    padding-top: calc(4rem + 20vh);
+    /* Account for gradient ramp */
+}
+
+.related-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .related-projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.related-project {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.related-project img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+}
