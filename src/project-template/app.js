@@ -39,6 +39,7 @@ class ProjectTemplate {
         }
 
         this.render();
+        this.setupGlobalHeader();
         this.setupHeroPlayer();
         this.setupCarousel();
         this.setupOtherVideos();
@@ -55,6 +56,18 @@ class ProjectTemplate {
     }
 
     render() {
+        const headerHtml = `
+            <div class="global-header" id="global-header">
+                <div>
+                    <a href="/index.html" class="hero-return-btn">RETURN TO PROJECTS</a>
+                </div>
+                <div style="text-align: right;">
+                    <div>${this.data.title}</div>
+                    <div style="color: #888;">${this.data.client || ''}</div>
+                </div>
+            </div>
+        `;
+
         // 1. Hero
         let heroHtml = '';
         if (this.data.hero?.type === 'video') {
@@ -64,15 +77,6 @@ class ProjectTemplate {
                         ${this.data.hero.sources.map(src => `<source src="${src}" type="video/mp4">`).join('')}
                     </video>
                     <div class="hero-overlay" id="hero-overlay">
-                        <div class="hero-header">
-                            <div>
-                                <a href="/index.html" class="hero-return-btn">RETURN TO PROJECTS</a>
-                            </div>
-                            <div style="text-align: right;">
-                                <div>${this.data.title}</div>
-                                <div style="color: #888;">${this.data.client || ''}</div>
-                            </div>
-                        </div>
                         <div class="hero-controls">
                             <button id="hero-play-btn" style="background: none; border: none; color: white; cursor: pointer; font-family: inherit;">PAUSE</button>
                             <div class="scrub-bar" id="hero-scrub-bar">
@@ -88,15 +92,6 @@ class ProjectTemplate {
                 <div class="hero-section">
                     <img class="hero-video" src="${this.data.hero.poster || this.data.hero.sources[0]}" alt="${this.data.title}" />
                     <div class="hero-overlay" id="hero-overlay">
-                        <div class="hero-header">
-                            <div>
-                                <a href="/index.html" class="hero-return-btn">RETURN TO PROJECTS</a>
-                            </div>
-                            <div style="text-align: right;">
-                                <div>${this.data.title}</div>
-                                <div style="color: #888;">${this.data.client || ''}</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             `;
@@ -218,6 +213,7 @@ class ProjectTemplate {
         `;
 
         this.app.innerHTML = `
+            ${headerHtml}
             ${heroHtml}
             ${rampHtml}
             ${overviewHtml}
@@ -244,10 +240,14 @@ class ProjectTemplate {
 
         let idleTimeout;
         const resetIdle = () => {
-            overlay.classList.remove('idle');
+            const header = document.getElementById('global-header');
+            if (overlay) overlay.classList.remove('idle');
+            if (header) header.classList.remove('idle');
+
             clearTimeout(idleTimeout);
             idleTimeout = setTimeout(() => {
-                overlay.classList.add('idle');
+                if (overlay) overlay.classList.add('idle');
+                if (header) header.classList.add('idle');
             }, 3000);
         };
 
@@ -279,6 +279,19 @@ class ProjectTemplate {
             const rect = scrubBar.getBoundingClientRect();
             const pos = clamp((e.clientX - rect.left) / rect.width, 0, 1);
             video.currentTime = pos * video.duration;
+        });
+    }
+
+    setupGlobalHeader() {
+        const header = document.getElementById('global-header');
+        if (!header) return;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     }
 
@@ -495,6 +508,7 @@ class ProjectTemplate {
                 // We clear standard event listeners internally by overwriting innerHTML and recalling setups
                 // It's cleaner than modifying individual DOM nodes heavily.
                 this.render();
+                this.setupGlobalHeader();
                 this.setupHeroPlayer();
                 this.setupCarousel();
                 this.setupOtherVideos();

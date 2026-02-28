@@ -41,12 +41,29 @@ section {
     background-color: transparent;
 }
 
-.hero-header {
+.global-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    padding: 2rem;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.global-header>div {
     pointer-events: auto;
-    /* Re-enable clicks for the return button */
+}
+
+.global-header.idle {
+    opacity: 0;
+}
+
+.global-header.scrolled {
+    opacity: 1 !important;
 }
 
 .hero-return-btn {
@@ -107,7 +124,7 @@ section {
     /* Let clicks pass through to video */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 2rem;
     transition: opacity 0.5s ease;
 }
