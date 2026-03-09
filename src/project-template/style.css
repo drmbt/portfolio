@@ -175,6 +175,14 @@ section {
     font-size: 1.2rem;
 }
 
+.overview-content p {
+    margin-bottom: 1.5rem;
+}
+
+.overview-content p:last-child {
+    margin-bottom: 0;
+}
+
 /* CAROUSEL */
 .carousel-section {
     overflow: hidden;

@@ -158,7 +158,7 @@ class ProjectTemplate {
                     <div class="section-label" style="margin-left: 2rem;">OTHER CONTENT</div>
                     <div class="carousel-track" id="carousel-track">
                         ${allImages.map((img, idx) => `
-                            <img src="${img}" class="carousel-img lightbox-trigger" data-gallery="carousel" data-raw-idx="${idx % this.data.carouselImages.length}" draggable="false" loading="lazy"/>
+                            <img src="${img}" class="carousel-img lightbox-trigger" data-gallery="carousel" data-raw-idx="${idx % this.data.carouselImages.length}" draggable="false" />
                         `).join('')}
                     </div>
                 </section>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strudel Background Template Test</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, Helvetica, Arial, sans-serif;
+      --bg: #04060f;
+      --surface: rgba(7, 10, 20, 0.9);
+      --border: rgba(255, 255, 255, 0.16);
+      --text: #f6f7fb;
+      --muted: rgba(246, 247, 251, 0.72);
+      --accent: #8ef5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .frame {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #05070e;
+    }
+
+    .hud {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .status {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .status strong {
+      color: var(--text);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 600;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #04060f;
+      border-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <p class="status" id="status">
+      <strong>Loading test patch...</strong> The Strudel iframe is being preloaded with your Strudel + Hydra code.
+    </p>
+    <div class="actions">
+      <a class="button primary" id="open-repl" href="https://strudel.cc/embed/" target="_blank" rel="noreferrer">Open REPL Directly</a>
+      <a class="button" href="./index.html">Back to Project</a>
+      <a class="button" href="/">Back to Portfolio</a>
+    </div>
+  </div>
+
+  <iframe
+    id="strudel-test-frame"
+    class="frame"
+    title="Strudel REPL test page"
+    loading="eager"
+    allow="autoplay; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin"
+  ></iframe>
+
+  <script type="module">
+    import { mountStrudelFrame } from "./strudel-embed.js";
+
+    const iframe = document.getElementById("strudel-test-frame");
+    const link = document.getElementById("open-repl");
+    const status = document.getElementById("status");
+
+    mountStrudelFrame(iframe, link);
+
+    iframe.addEventListener("load", () => {
+      status.innerHTML = "<strong>Patch loaded.</strong> If audio does not begin automatically, click once inside the REPL to satisfy browser autoplay restrictions.";
+    });
+  </script>
+</body>
+</html>

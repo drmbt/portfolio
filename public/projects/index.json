@@ -1,23 +1,19 @@
 [
   {
-    "title": "Cyberpunk City VFX",
-    "description": "A cinematic visual effects breakdown of a futuristic cyberpunk city with neon lighting and rainy atmosphere.",
+    "id": "LOVESTADT",
+    "title": "LOVESTADT",
+    "description": "ART.STADT",
+    "date": "2026-03-09",
+    "thumb": "/projects/LOVESTADT/assets/poster/Flux2-Klein-9b-fp8_outpaint_lovestadt_00032__selects.png",
     "hashtags": [
-      "vfx",
-      "cyberpunk",
-      "cinema4d",
-      "octane",
-      "compositing"
-    ],
-    "date": "2025-11-15",
-    "id": "cyberpunk-city",
-    "thumb": "/projects/cyberpunk-city/thumb.jpg"
+      "art.stadt"
+    ]
   },
   {
     "id": "midterms-algorave",
     "title": "Midterms Algorave",
     "description": "Mars 2026",
-    "date": "2026-02-28",
+    "date": "2026-03-09",
     "thumb": "/projects/midterms-algorave/assets/poster/test-pattern.png",
     "hashtags": [
       "mars 2026"
@@ -49,6 +45,19 @@
     "date": "2026-01-22",
     "id": "neon-dreams",
     "thumb": "/projects/neon-dreams/thumb.jpg"
+  },
+  {
+    "title": "Strudel Background Template",
+    "description": "A standalone project shell that embeds the Strudel REPL as a full-screen iframe background.",
+    "hashtags": [
+      "strudel",
+      "hydra",
+      "livecoding",
+      "template"
+    ],
+    "date": "2026-03-06",
+    "thumb": "/projects/strudel-background-template/thumb.svg",
+    "id": "strudel-background-template"
   },
   {
     "title": "Vincestrument Hub",

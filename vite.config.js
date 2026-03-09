@@ -69,6 +69,11 @@ function projectDatabasePlugin() {
 
                     // Merge frontmatter with discovered assets (Frontmatter wins if explicitly defined)
                     data.hero = data.hero || discoveredHero;
+
+                    if (data.hero && data.hero.type === 'video' && data.hero.sources) {
+                        discoveredOtherVideos = discoveredOtherVideos.filter(ov => !data.hero.sources.includes(ov.sources[0]));
+                    }
+
                     if (!data.otherVideos && discoveredOtherVideos.length > 0) data.otherVideos = discoveredOtherVideos;
                     if (!data.carouselImages && discoveredCarousel.length > 0) data.carouselImages = discoveredCarousel;
                     if (!data.posterImages && discoveredPosters.length > 0) data.posterImages = [discoveredPosters]; // wrap in row array
