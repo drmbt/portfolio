@@ -120,7 +120,7 @@ function projectDatabasePlugin() {
                         title: data.title || folder,
                         description: data.client || 'Project',
                         date: data.date || new Date().toISOString().split('T')[0],
-                        thumb: data.hero?.poster || `/projects/${folder}/thumb.jpg`,
+                        thumb: data.hero?.poster || (data.hero?.type === 'image' ? data.hero.sources?.[0] : null) || `/projects/${folder}/thumb.jpg`,
                         hashtags: [data.client?.toLowerCase()].filter(Boolean)
                     });
 
