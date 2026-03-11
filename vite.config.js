@@ -59,9 +59,11 @@ function projectCreatorPlugin() {
                         const videoDir = path.join(newProjectDir, 'assets', 'video');
                         const imageDir = path.join(newProjectDir, 'assets', 'image');
                         const posterDir = path.join(newProjectDir, 'assets', 'poster');
+                        const audioDir = path.join(newProjectDir, 'assets', 'audio');
                         fs.mkdirSync(videoDir, { recursive: true });
                         fs.mkdirSync(imageDir, { recursive: true });
                         fs.mkdirSync(posterDir, { recursive: true });
+                        fs.mkdirSync(audioDir, { recursive: true });
 
                         let thumbPath = '';
                         let existingThumbFlag = existing_thumb || '';
@@ -85,6 +87,7 @@ function projectCreatorPlugin() {
                                 scanDir(videoDir, 'video');
                                 scanDir(imageDir, 'image');
                                 scanDir(posterDir, 'poster');
+                                scanDir(audioDir, 'audio');
 
                                 if (fs.existsSync(newProjectDir)) {
                                     fs.readdirSync(newProjectDir).forEach(f => {
@@ -104,14 +107,17 @@ function projectCreatorPlugin() {
                                     } else {
                                         if (match.role !== match.targetRole) {
                                             const ext = path.extname(existing.name).toLowerCase();
-                                            const isVideo = ['.mp4', '.webm', '.ogg'].includes(ext);
-                                            let targetDir = isVideo ? videoDir : imageDir;
+                                            const isVideo = ['.mp4', '.webm', '.ogg'].includes(ext) && existing.parent === 'video';
+                                            const isAudio = ['.mp3', '.m4a', '.wav', '.ogg'].includes(ext) && existing.parent === 'audio';
+                                            let targetDir = isVideo ? videoDir : (isAudio ? audioDir : imageDir);
                                             let finalName = existing.name;
 
                                             if (match.targetRole === 'hero') {
                                                 finalName = `hero${ext}`;
                                             } else if (match.targetRole === 'poster') {
                                                 targetDir = posterDir;
+                                            } else if (match.targetRole === 'audio') {
+                                                targetDir = audioDir;
                                             } else if (match.targetRole === 'thumbnail') {
                                                 targetDir = newProjectDir;
                                                 finalName = `thumb${ext}`;
@@ -149,8 +155,10 @@ function projectCreatorPlugin() {
                                 let targetDir = imageDir;
                                 const ext = path.extname(file.originalname).toLowerCase();
                                 const isVideo = ['.mp4', '.webm', '.ogg'].includes(ext);
+                                const isAudio = ['.mp3', '.m4a', '.wav'].includes(ext);
 
                                 if (isVideo) targetDir = videoDir;
+                                else if (isAudio) targetDir = audioDir;
 
                                 let finalName = file.originalname;
 
@@ -162,6 +170,8 @@ function projectCreatorPlugin() {
                                     targetDir = posterDir;
                                     // Make sure it doesn't overwrite if multiple posters
                                     // if it's the only poster it's fine, else poster1, poster2
+                                } else if (role === 'audio') {
+                                    targetDir = audioDir;
                                 } else if (role === 'thumbnail') {
                                     targetDir = newProjectDir;
                                     finalName = `thumb${ext}`;
@@ -287,11 +297,13 @@ function generateProjectDatabase() {
                 const videoDir = path.join(assetsDir, 'video');
                 const imageDir = path.join(assetsDir, 'image');
                 const posterDir = path.join(assetsDir, 'poster');
+                const audioDir = path.join(assetsDir, 'audio');
 
                 let discoveredHero = null;
                 let discoveredOtherVideos = [];
                 let discoveredCarousel = [];
                 let discoveredPosters = [];
+                let discoveredAudio = [];
                 let existingMedia = [];
 
                 // Scan Videos
@@ -335,6 +347,17 @@ function generateProjectDatabase() {
                     }
                 }
 
+                // Scan Audio
+                if (fs.existsSync(audioDir)) {
+                    const audios = fs.readdirSync(audioDir).filter(f => !f.startsWith('.')).sort();
+                    for (const a of audios) {
+                        const p = `/projects/${folder}/assets/audio/${a}`;
+                        const title = a.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase();
+                        discoveredAudio.push({ title, path: p });
+                        existingMedia.push({ name: a, path: p, role: 'audio' });
+                    }
+                }
+
                 // Scan Thumbnail at root
                 const rootFiles = fs.readdirSync(path.join(projectsDir, folder)).filter(f => !fs.statSync(path.join(projectsDir, folder, f)).isDirectory());
                 for (const f of rootFiles) {
@@ -354,6 +377,7 @@ function generateProjectDatabase() {
                 if (!data.otherVideos && discoveredOtherVideos.length > 0) data.otherVideos = discoveredOtherVideos;
                 if (!data.carouselImages && discoveredCarousel.length > 0) data.carouselImages = discoveredCarousel;
                 if (!data.posterImages && discoveredPosters.length > 0) data.posterImages = [discoveredPosters]; // wrap in row array
+                if (!data.audioFiles && discoveredAudio.length > 0) data.audioFiles = discoveredAudio;
 
                 // Ensure hero video has a poster if available
                 if (data.hero && data.hero.type === 'video' && !data.hero.poster && discoveredPosters.length > 0) {

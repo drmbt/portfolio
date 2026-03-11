@@ -17,6 +17,20 @@
     ]
   },
   {
+    "id": "drmbt-suno-26",
+    "title": "Suno Music 2026",
+    "client": "Vincent",
+    "description": "A collection of Suno music Vincent made in 2026 at Mars.",
+    "date": "2026-03-11",
+    "thumb": "/projects/drmbt-suno-26/assets/image/hero.png",
+    "hashtags": [
+      "suno",
+      "music",
+      "mars"
+    ],
+    "roles": []
+  },
+  {
     "id": "midterms-algorave",
     "title": "Midterms Algorave",
     "client": "Mars 2026",
@@ -25,7 +39,9 @@
     "thumb": "/projects/midterms-algorave/assets/image/ALGORAVE-SELECTS-16.png",
     "hashtags": [
       "vj",
-      "projection"
+      "projection",
+      "livecoding",
+      "algorave"
     ],
     "roles": [
       {
@@ -35,6 +51,34 @@
       {
         "role": "CINEMATOGRAPHER",
         "name": "VINCENT"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "GENE"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "ALEJANDRO"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "KAMAU"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "YULIA"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "VINCENT"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "RIA"
+      },
+      {
+        "role": "LIVECODING",
+        "name": "MARZIPAN"
       }
     ]
   },

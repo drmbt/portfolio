@@ -46,6 +46,7 @@ class ProjectTemplate {
         this.setupHeroPlayer();
         this.setupCarousel();
         this.setupOtherVideos();
+        this.setupAudioPlayers();
     }
 
     parseData() {
@@ -131,6 +132,30 @@ class ProjectTemplate {
                                     <source src="${vid.sources[0]}#t=3" type="video/mp4">
                                 </video>
                                 <div class="video-thumb-title">${vid.title}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+        }
+
+        // 4.5 Audio
+        let audioHtml = '';
+        if (this.data.audioFiles && this.data.audioFiles.length > 0) {
+            audioHtml = `
+                <section class="audio-section">
+                    <div class="section-label">AUDIO</div>
+                    <div class="audio-list">
+                        ${this.data.audioFiles.map((aud, idx) => `
+                            <div class="audio-player" data-idx="${idx}">
+                                <audio class="audio-element" src="${aud.path}" preload="metadata"></audio>
+                                <button class="audio-play-btn" style="background:none;border:none;color:inherit;cursor:pointer;font-family:inherit;padding-right:1rem;">PLAY</button>
+                                <div class="audio-title" style="min-width: 150px;">${aud.title}</div>
+                                <div class="scrub-bar audio-scrub-bar" style="flex-grow:1; margin:0 1rem; position:relative; height:4px; background:rgba(255,255,255,0.3); cursor:pointer;">
+                                    <div class="scrub-progress audio-scrub-progress" style="height:100%; background:var(--text-color); width:0%;"></div>
+                                </div>
+                                <div class="audio-timecode" style="min-width:40px; text-align:right;">0:00</div>
+                                <button class="audio-mute-btn" style="background:none;border:none;color:inherit;cursor:pointer;font-family:inherit;margin-left:1rem;">MUTE</button>
                             </div>
                         `).join('')}
                     </div>
@@ -231,6 +256,7 @@ class ProjectTemplate {
             ${rampHtml}
             ${overviewHtml}
             ${otherVideosHtml}
+            ${audioHtml}
             ${posterHtml}
             ${carouselHtml}
             ${creditsHtml}
@@ -542,9 +568,74 @@ class ProjectTemplate {
                 this.setupHeroPlayer();
                 this.setupCarousel();
                 this.setupOtherVideos();
+                this.setupAudioPlayers();
 
                 // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
+
+    setupAudioPlayers() {
+        const audioPlayers = document.querySelectorAll('.audio-player');
+        audioPlayers.forEach(player => {
+            const audio = player.querySelector('.audio-element');
+            const playBtn = player.querySelector('.audio-play-btn');
+            const scrubBar = player.querySelector('.audio-scrub-bar');
+            const scrubProgress = player.querySelector('.audio-scrub-progress');
+            const timecode = player.querySelector('.audio-timecode');
+            const muteBtn = player.querySelector('.audio-mute-btn');
+
+            playBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    // Auto-pause other audios
+                    document.querySelectorAll('.audio-element').forEach(a => {
+                        if (a !== audio) {
+                            a.pause();
+                            const otherPlayBtn = a.parentElement.querySelector('.audio-play-btn');
+                            if (otherPlayBtn) otherPlayBtn.textContent = 'PLAY';
+                        }
+                    });
+
+                    audio.play();
+                    playBtn.textContent = 'PAUSE';
+                } else {
+                    audio.pause();
+                    playBtn.textContent = 'PLAY';
+                }
+            });
+
+            if (muteBtn) {
+                muteBtn.addEventListener('click', () => {
+                    audio.muted = !audio.muted;
+                    muteBtn.textContent = audio.muted ? 'UNMUTE' : 'MUTE';
+                });
+            }
+
+            audio.addEventListener('timeupdate', () => {
+                if (!audio.duration) return;
+                const progress = (audio.currentTime / audio.duration) * 100;
+                scrubProgress.style.width = `${progress}%`;
+
+                const mins = Math.floor(audio.currentTime / 60);
+                const secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+                timecode.textContent = `${mins}:${secs}`;
+            });
+
+            // Update scrub bar on scrub
+            scrubBar.addEventListener('click', (e) => {
+                const rect = scrubBar.getBoundingClientRect();
+                const pos = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+                if (audio.duration) {
+                    audio.currentTime = pos * audio.duration;
+                }
+            });
+
+            // Reset when audio finishes playing
+            audio.addEventListener('ended', () => {
+                playBtn.textContent = 'PLAY';
+                scrubProgress.style.width = '0%';
+                audio.currentTime = 0;
             });
         });
     }
