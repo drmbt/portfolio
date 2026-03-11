@@ -1,4 +1,6 @@
 import './style.css';
+import './wizard.css';
+import { setupWizard } from './wizard.js';
 import Fuse from 'fuse.js';
 
 class PortfolioApp {
@@ -44,7 +46,7 @@ class PortfolioApp {
 
   setupFuse() {
     const options = {
-      keys: ['title', 'description', 'hashtags'],
+      keys: ['title', 'description', 'hashtags', 'client', 'roles.role', 'roles.name'],
       threshold: 0.3, // Lower threshold = stricter matching
       includeScore: true,
       useExtendedSearch: true
@@ -172,9 +174,9 @@ class PortfolioApp {
         .map(tag => `<span class="hashtag" data-tag="${tag}">#${tag}</span>`)
         .join('');
 
-      const authorHtml = project.author ? `<span class="project-author">by ${project.author}</span>` : '';
+      const subheaderHtml = project.client ? `<span class="project-author">${project.client}</span>` : '';
       const dateHtml = project.date ? `<span class="project-date">${project.date}</span>` : '';
-      const metaRow = (authorHtml || dateHtml) ? `<div class="project-meta">${authorHtml} ${dateHtml}</div>` : '';
+      const metaRow = (subheaderHtml || dateHtml) ? `<div class="project-meta">${subheaderHtml} ${dateHtml}</div>` : '';
 
       card.innerHTML = `
         <img class="project-thumb" src="${project.thumb}" alt="${project.title}" loading="lazy" />
@@ -199,5 +201,6 @@ class PortfolioApp {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+  setupWizard();
   new PortfolioApp();
 });

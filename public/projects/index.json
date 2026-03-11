@@ -2,41 +2,198 @@
   {
     "id": "LOVESTADT",
     "title": "LOVESTADT",
-    "description": "ART.STADT",
-    "date": "2026-03-10",
+    "client": "ART.STADT",
+    "description": "In 2022, the ART.STADT gallery in Hamburg hosted an exhibition called LOVE.STADT, a show featuring work exploring the concept of Robot Love and Future Fetish.  Working with early SD1.5 stable diffusion models, Vincent iterated with a prompt featuring an ambiguous slurry of keywords pertaining to `androgenous body, eyes, lips, curves, close up portrait, epic light, melting liquid, acrylic painting, abstract, in glass and black latex fluid, hyperrealistic, 3d sculpture, bokeh, long exposure, art",
+    "date": "2026-03-11",
     "thumb": "/projects/LOVESTADT/assets/poster/Flux2-Klein-9b-fp8_outpaint_lovestadt_00032__selects.png",
     "hashtags": [
       "art.stadt"
+    ],
+    "roles": [
+      {
+        "role": "DIRECTOR",
+        "name": "VINCENT"
+      }
     ]
   },
   {
     "id": "midterms-algorave",
     "title": "Midterms Algorave",
-    "description": "Mars 2026",
-    "date": "2026-03-10",
-    "thumb": "/projects/midterms-algorave/assets/poster/test-pattern.png",
+    "client": "Mars 2026",
+    "description": "MIDTERMS ALGORAVE WAS A MULTIMEDIA PERFORMANCE FEATURING LIVE VISUALS AND GENERATIVE AUDIO IN A CLUB SETTING. THE FOCUS WAS ON CREATING AN IMMERSIVE ENVIRONMENT THROUGH REACTIVE PROJECTIONS THAT RESPOND TO THE BEAT AND TIMBRE OF THE MUSIC.",
+    "date": "2026-03-11",
+    "thumb": "/projects/midterms-algorave/assets/image/ALGORAVE-SELECTS-16.png",
     "hashtags": [
-      "mars 2026"
+      "vj",
+      "projection"
+    ],
+    "roles": [
+      {
+        "role": "DIRECTOR",
+        "name": "VINCENT"
+      },
+      {
+        "role": "CINEMATOGRAPHER",
+        "name": "VINCENT"
+      }
     ]
   },
   {
     "id": "midterms-gallery",
     "title": "Midterms Gallery",
-    "description": "Mars 2026",
-    "date": "2026-03-10",
+    "client": "Mars 2026",
+    "description": "Mars College 2026 midterms gallery show inside Chiba.",
+    "date": "2026-03-11",
     "thumb": "/projects/midterms-gallery/assets/poster/proof-of-waste.jpg",
     "hashtags": [
       "mars 2026"
+    ],
+    "roles": [
+      {
+        "role": "ARTIST",
+        "name": "MARZIPAN"
+      },
+      {
+        "role": "ARTIST",
+        "name": "CHEBEL"
+      },
+      {
+        "role": "ARTIST",
+        "name": "VINCENT"
+      },
+      {
+        "role": "ARTIST",
+        "name": "YULIA"
+      },
+      {
+        "role": "ARTIST",
+        "name": "GENE"
+      },
+      {
+        "role": "ARTIST",
+        "name": "TARCILA"
+      },
+      {
+        "role": "ARTIST",
+        "name": "KAMAU"
+      },
+      {
+        "role": "ARTIST",
+        "name": "JMILL"
+      },
+      {
+        "role": "ARTIST",
+        "name": "VANESSA"
+      },
+      {
+        "role": "ARTIST",
+        "name": "CAT"
+      },
+      {
+        "role": "ARTIST",
+        "name": "JENSEN"
+      },
+      {
+        "role": "ARTIST",
+        "name": "ZAYNE"
+      },
+      {
+        "role": "ARTIST",
+        "name": "FREEMAN"
+      },
+      {
+        "role": "ARTIST",
+        "name": "JORDAN"
+      }
     ]
   },
   {
     "id": "painted-canyon-algorave",
     "title": "Painted Canyons Algorave",
-    "description": "Desert Rave",
-    "date": "2026-03-10",
+    "client": "Desert Rave",
+    "description": "A full moon algorave at the Painted Canyons.",
+    "date": "2026-03-11",
     "thumb": "/projects/painted-canyon-algorave/assets/image/hero_painted-canyons-exports-9.png",
     "hashtags": [
       "desert rave"
+    ],
+    "roles": [
+      {
+        "role": "DJ",
+        "name": "KIRBY"
+      },
+      {
+        "role": "LIVE CODING",
+        "name": "KAUMAU"
+      },
+      {
+        "role": "LIVE CODING",
+        "name": "YULIA"
+      },
+      {
+        "role": "VISUALS",
+        "name": "VINCENT"
+      },
+      {
+        "role": "LIVE CODING",
+        "name": "ALEJANDRO"
+      },
+      {
+        "role": "GUITAR",
+        "name": "TRISTAN"
+      },
+      {
+        "role": "VISUALS",
+        "name": "TARCILA"
+      },
+      {
+        "role": "VISUALS",
+        "name": "YGOR"
+      },
+      {
+        "role": "VISUALS",
+        "name": "CHEBEL"
+      },
+      {
+        "role": "VISUALS",
+        "name": "XANDER"
+      },
+      {
+        "role": "LIVE CODING",
+        "name": "RIA"
+      },
+      {
+        "role": "DJ",
+        "name": "LYOSHA"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "KAMAU"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "VINCENT"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "CHEBEL"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "XANDER"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "YGOR"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "CASSEY"
+      },
+      {
+        "role": "PHOTOGRAPHER",
+        "name": "ZAYNE"
+      }
     ]
   },
   {
@@ -50,7 +207,9 @@
     ],
     "date": "2026-02-20",
     "id": "slop",
-    "thumb": "/projects/slop/thumb.jpg"
+    "thumb": "/projects/slop/thumb.jpg",
+    "roles": [],
+    "client": ""
   },
   {
     "title": "Strudel Background Template",
@@ -63,7 +222,48 @@
     ],
     "date": "2026-03-06",
     "thumb": "/projects/strudel-background-template/thumb.svg",
-    "id": "strudel-background-template"
+    "id": "strudel-background-template",
+    "roles": [],
+    "client": ""
+  },
+  {
+    "id": "this-is-a-test",
+    "title": "this is a test",
+    "client": "Project",
+    "description": "here's a test project. I made it to see how well this ingestion wizard is working",
+    "date": "2026-03-11",
+    "thumb": "/projects/this-is-a-test/assets/poster/2026-02-MARS-0024-152.jpg",
+    "hashtags": [
+      "project"
+    ],
+    "roles": [
+      {
+        "role": "director",
+        "name": "vincent"
+      },
+      {
+        "role": "tester",
+        "name": "claude"
+      }
+    ]
+  },
+  {
+    "id": "this1",
+    "title": "this1",
+    "client": "that",
+    "description": "anothrt",
+    "date": "2026-03-11",
+    "thumb": "/projects/this1/assets/poster/b7aca2c335d598e362d9576407a9a8ba29d7edbabb1d810779eef80c53b9f434.png",
+    "hashtags": [
+      "vj",
+      "ai"
+    ],
+    "roles": [
+      {
+        "role": "me",
+        "name": "vincent"
+      }
+    ]
   },
   {
     "title": "Vincestrument Hub",
@@ -78,6 +278,8 @@
     ],
     "date": "2026-02-10",
     "id": "vincetrument",
-    "thumb": "/projects/vincetrument/thumb.jpg"
+    "thumb": "/projects/vincetrument/thumb.jpg",
+    "roles": [],
+    "client": "Codercat Studio"
   }
 ]

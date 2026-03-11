@@ -1,3 +1,6 @@
+import { setupWizard } from '../wizard.js';
+import '../wizard.css';
+
 function clamp(val, min, max) {
     return Math.min(Math.max(val, min), max);
 }
@@ -61,9 +64,15 @@ class ProjectTemplate {
                 <div>
                     <a href="/index.html" class="hero-return-btn">RETURN TO PROJECTS</a>
                 </div>
-                <div style="text-align: right;">
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem;">
                     <div>${this.data.title}</div>
                     <div style="color: #888;">${this.data.client || ''}</div>
+                    <button id="edit-project-btn" title="Edit Project" style="background:none;border:none;color:#888;cursor:pointer;padding:0;margin-top:4px;transition:color 0.2s;display:flex;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         `;
@@ -79,6 +88,7 @@ class ProjectTemplate {
                     <div class="hero-overlay" id="hero-overlay">
                         <div class="hero-controls">
                             <button id="hero-play-btn" style="background: none; border: none; color: white; cursor: pointer; font-family: inherit;">PAUSE</button>
+                            <button id="hero-mute-btn" style="background: none; border: none; color: white; cursor: pointer; font-family: inherit; margin-left: 1rem;">UNMUTE</button>
                             <div class="scrub-bar" id="hero-scrub-bar">
                                 <div class="scrub-progress" id="hero-scrub-progress"></div>
                             </div>
@@ -167,17 +177,20 @@ class ProjectTemplate {
 
         // 7. Credits
         let creditsHtml = '';
-        if (this.data.credits && this.data.credits.length > 0) {
+        const rolesData = this.data.roles || this.data.credits;
+        if (rolesData && rolesData.length > 0) {
             creditsHtml = `
                 <section class="credits-section">
                     <div class="section-label">ROLES</div>
-                    ${this.data.credits.map(cred => `
+                    <div class="credits-list">
+                    ${rolesData.map(cred => `
                         <div class="credit-row">
                             <span class="credit-role">${cred.role}</span>
-                            <span>|</span>
+                            <span class="credit-separator">&bull;</span>
                             <span class="credit-name">${cred.name}</span>
                         </div>
                     `).join('')}
+                    </div>
                 </section>
             `;
         }
@@ -234,6 +247,7 @@ class ProjectTemplate {
 
         const overlay = document.getElementById('hero-overlay');
         const playBtn = document.getElementById('hero-play-btn');
+        const muteBtn = document.getElementById('hero-mute-btn');
         const scrubBar = document.getElementById('hero-scrub-bar');
         const scrubProgress = document.getElementById('hero-scrub-progress');
         const timecode = document.getElementById('hero-timecode');
@@ -265,6 +279,13 @@ class ProjectTemplate {
             }
         });
 
+        if (muteBtn) {
+            muteBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                muteBtn.textContent = video.muted ? 'UNMUTE' : 'MUTE';
+            });
+        }
+
         video.addEventListener('timeupdate', () => {
             if (!video.duration) return;
             const progress = (video.currentTime / video.duration) * 100;
@@ -293,6 +314,15 @@ class ProjectTemplate {
                 header.classList.remove('scrolled');
             }
         });
+
+        const editBtn = document.getElementById('edit-project-btn');
+        if (editBtn) {
+            editBtn.addEventListener('click', () => {
+                if (window.openNewProjectWizard) {
+                    window.openNewProjectWizard(this.data);
+                }
+            });
+        }
     }
 
     setupCarousel() {
@@ -521,5 +551,6 @@ class ProjectTemplate {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupWizard();
     new ProjectTemplate();
 });

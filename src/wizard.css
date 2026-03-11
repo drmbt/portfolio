@@ -1,0 +1,391 @@
+.wizard-modal-overlay {
+    /* Fallback vars for project template contexts */
+    --text-primary: var(--text-color, #ffffff);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.wizard-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.wizard-modal-content {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.wizard-modal-overlay.active .wizard-modal-content {
+    transform: translateY(0);
+}
+
+.wizard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.wizard-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.wizard-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.wizard-close-btn:hover {
+    color: var(--text-primary);
+}
+
+.wizard-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.wizard-form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.wizard-input,
+.wizard-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.wizard-input:focus,
+.wizard-textarea:focus {
+    outline: none;
+    border-color: var(--text-primary);
+}
+
+.wizard-textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.wizard-dropzone {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.01);
+    transition: all 0.2s;
+}
+
+.wizard-dropzone.dragover {
+    border-color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.wizard-dropzone-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.wizard-dropzone p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.wizard-file-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wizard-file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.wizard-file-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+}
+
+.wizard-file-name {
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    cursor: help;
+}
+
+.wizard-file-name:hover {
+    overflow: visible;
+    white-space: normal;
+    word-break: break-all;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    z-index: 20;
+    background: var(--bg-color);
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    max-width: 300px;
+}
+
+.wizard-file-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.wizard-role-select {
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+.wizard-remove-file {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.wizard-credits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.wizard-credit-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.wizard-credit-row input {
+    flex: 1;
+}
+
+.wizard-add-credit {
+    background: none;
+    border: 1px dashed var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wizard-add-credit:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.wizard-remove-credit {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+.wizard-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    position: sticky;
+    bottom: -2.5rem;
+    background: var(--bg-color);
+    margin-left: -2.5rem;
+    margin-right: -2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 2.5rem;
+    z-index: 10;
+}
+
+.wizard-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+}
+
+.wizard-btn-cancel {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.wizard-btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.wizard-btn-submit {
+    background: var(--text-primary);
+    border: 1px solid var(--text-primary);
+    color: #000;
+}
+
+.wizard-btn-submit:hover {
+    background: #e0e0e0;
+}
+
+.wizard-btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.wizard-btn-delete {
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+.wizard-btn-delete:hover {
+    background: #ff4444;
+    color: #fff;
+}
+
+.wizard-loading {
+    display: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wizard-loading.active {
+    display: flex;
+}
+
+.wizard-active-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.wizard-tag-pill {
+    background: var(--text-primary);
+    color: var(--bg-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wizard-tag-pill .remove {
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.wizard-tag-input-wrapper {
+    position: relative;
+}
+
+.wizard-tag-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 20;
+    display: none;
+}
+
+.wizard-tag-dropdown.active {
+    display: block;
+}
+
+.wizard-dropdown-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+}
+
+.wizard-dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Make date picker icon white in dark mode */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

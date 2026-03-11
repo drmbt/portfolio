@@ -28,6 +28,13 @@
           <input type="text" id="search-input" placeholder="Search projects or tags..." />
         </div>
         <div class="view-toggles">
+          <button id="new-project-btn" class="toggle-btn" title="New Project"
+            onclick="window.openNewProjectWizard && window.openNewProjectWizard()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
           <button id="grid-view-btn" class="toggle-btn active" title="Grid View">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="3" width="7" height="7"></rect>

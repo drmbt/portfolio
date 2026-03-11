@@ -1,24 +1,12 @@
 ---
 title: "Midterms Algorave"
+date: "2026-03-11"
 client: "Mars 2026"
-
-# ----------------- ASSET LOADING OPTIONS -----------------
-# Option 1: Procedural Asset Discovery (Recommended)
-# By default, Vite will scan the 'assets/video', 'assets/image', 
-# and 'assets/poster' folders and automatically populate the 
-# carousel, posters, and other videos sections.
-#
-# Option 2: Explicit Asset Placement 
-# You can override procedural discovery by explicitly defining 
-# assets here. For example, explicitly setting the hero:
-hero: 
-  type: "video"
-  sources:
-    - "/projects/midterms-algorave/assets/video/hero-algorave-projection-edit.mov"
-  poster: "/projects/midterms-algorave/assets/poster/test-pattern.png"
-  aspectRatios: ["16:9"]
-# ---------------------------------------------------------
-credits:
+thumb: "/projects/midterms-algorave/assets/image/ALGORAVE-SELECTS-16.png"
+hashtags:
+  - "vj"
+  - "projection"
+roles:
   - role: "DIRECTOR"
     name: "VINCENT"
   - role: "CINEMATOGRAPHER"
